@@ -71,9 +71,9 @@ function Register() {
                 </div>
 
                 <div>
-                    <label htmlFor="name">Username</label>
-                    <input type="text" placeholder="Enter your username" id="name"
-                    value={name} name="name" onChange={handleChangeInput} />
+                    <label htmlFor="username">Username</label>
+                    <input type="text" placeholder="Enter your username" id="username"
+                    value={username} name="username" onChange={handleChangeInput} />
                 </div>
 
                 <div>
