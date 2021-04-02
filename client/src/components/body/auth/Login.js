@@ -4,8 +4,7 @@ import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {dispatchLogin} from '../../../redux/actions/authAction'
 import {useDispatch} from 'react-redux'
-import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+
 
 
 //redux intial state
@@ -49,40 +48,11 @@ function Login() {
         }
     }
 
-    const responseGoogle = async (response) => {
-        try {
-            const res = await axios.post('/user/google_login', {tokenId: response.tokenId})
-
-            setUser({...user, error:'', success: res.data.msg})
-            localStorage.setItem('firstLogin', true)
-
-            dispatch(dispatchLogin())
-            history.push('/')
-        } catch (err) {
-            err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
-        }
-    }
-
-    const responseFacebook = async (response) => {
-        try {
-            const {accessToken, userID} = response
-            const res = await axios.post('/user/facebook_login', {accessToken, userID})
-
-            setUser({...user, error:'', success: res.data.msg})
-            localStorage.setItem('firstLogin', true)
-
-            dispatch(dispatchLogin())
-            history.push('/')
-        } catch (err) {
-            err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
-        }
-    }
+    
 
     return (
         <div className="login_page">
-            <h2>Wecome to Touch Share</h2>
+            <h2>Login</h2>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
 
@@ -107,22 +77,6 @@ function Login() {
 
           
 
-            <div className="social">
-                <GoogleLogin
-                    clientId="Your google client id"
-                    buttonText="Login with google"
-                    onSuccess={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
-                
-                <FacebookLogin
-                appId="Your facebook app id"
-                autoLoad={false}
-                fields="name,email,picture"
-                callback={responseFacebook} 
-                />
-
-            </div>
 
             <p>Don't have an account yet ? <Link to="/register">Sign up here</Link></p>
         </div>
