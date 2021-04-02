@@ -10,7 +10,7 @@ const initialState = {
     email: '',
     password: '',
     cf_password: '',
-    serial_code:'',
+    serial:'',
     username:'' ,
     err: '',
     success: ''
@@ -19,7 +19,7 @@ const initialState = {
 function Register() {
     const [user, setUser] = useState(initialState)
 
-    const {name, email, password, serial_code, username,err, success} = user
+    const {name, email, password, serial, username,err, success} = user
 
     const handleChangeInput = e => {
         const {name, value} = e.target
@@ -40,14 +40,17 @@ function Register() {
 
         if(isLength(password))
             return setUser({...user, err: "Password must be at least 6 characters.", success: ''})
+
+        if(isSerial(serial))
+            return setUser({...user, err: "Serial code must have 13 numbers.", success: ''})
         
 
-        if(!isSerial(serial_code, serial_code))
-            return setUser({...user, err: "Serial Code did not match.", success: ''})
+   
 
         try {
             const res = await axios.post('/user/register', {
-                name, email, password, serial_code
+                name, email, password, serial
+
             })
 
             setUser({...user, err: '', success: res.data.msg})
@@ -90,9 +93,9 @@ function Register() {
 
 
                 <div>
-                    <label htmlFor="serial_code">Touch Share Serial Code</label>
-                    <input type="number" placeholder="Enter Serial Code" id="serial_code"
-                    value={serial_code} name="serial_code" onChange={handleChangeInput} />
+                    <label htmlFor="serial">Touch Share Serial Code</label>
+                    <input type="number" placeholder="Enter Serial Code" id="serial"
+                    value={serial} name="serial" onChange={handleChangeInput} />
                 </div>
 
                 <div className="row">

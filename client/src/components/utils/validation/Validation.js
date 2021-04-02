@@ -3,18 +3,17 @@ export const isEmpty = value => {
     return false
 }
 
-export const isEmail = email => {
-    // eslint-disable-next-line
+export const isEmail = email => {     // eslint-disable-next-line
     const re = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     return re.test(email);
 }
 
-export const isLength = password => {
+export const isLength = password => { 
     if(password.length < 7) return true
     return false
 }
 
-export const isMatch = (password, cf_password) => {
+export const isMatch = (password, cf_password) => { 
     if(password === cf_password) return true
     return false
 }
@@ -25,8 +24,8 @@ export const isUser = username => {
     return re.test(username);
 }
 
-
-export const isSerial = serial_code => {
-    if(serial_code.length < 13) return true
-    return false
+//serial_number generator 
+export const isSerial = serial => {
+  if(serial.length < 1) return true
+  return false
 }

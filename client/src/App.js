@@ -2,10 +2,16 @@ import React, {useEffect} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {dispatchLogin, fetchUser, dispatchGetUser} from './redux/actions/authAction'
-
+import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import Notify from './components/notify/Notify'
 import Header from './components/header/Header'
 import Body from './components/body/Body'
 import axios from 'axios';
+
+
+
+//theme style 
+
 
 //redux axios
 function App() {
@@ -14,7 +20,7 @@ function App() {
   const auth = useSelector(state => state.auth)
 
 
-  //get user post on Postman
+//get user post on Postman
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin')
     if(firstLogin){
@@ -44,8 +50,10 @@ function App() {
   return (
     <Router>
       <div className="App">
+        
         <Header />
         <Body />
+       
       </div>
     </Router>
   );

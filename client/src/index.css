@@ -41,3 +41,8 @@ button{
 
 /* ----------------- Profile ------------------- */
 @import url("./components/body/profile/profile.css");
+
+
+/* ----------------- Loading ------------------- */
+@import url("./components/notify/loading.css");
+

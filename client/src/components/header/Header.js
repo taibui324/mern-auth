@@ -1,10 +1,12 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link , useLocation} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
 
 
 function Header() {
+
+    
     const auth = useSelector(state => state.auth)
 
     const {user, isLogged} = auth
@@ -20,7 +22,19 @@ function Header() {
         }
     }
 
+    
+
+
     const userLink = () => {
+
+        const navLinks = [
+            {label : 'Home', icon:'home', path: '/'},
+            {label : 'Message', icon:'near_me', path: '/message'},
+            {label : 'Discover', icon:'explore', path: '/discover'},
+            {label : 'Notify', icon:'favorite', path: '/notify'},
+        ]
+
+
         return <li className="drop-nav">
             <Link to="#" className="avatar">
             <img src={user.avatar} alt=""/> {user.name} <i className="fas fa-angle-down"></i>
